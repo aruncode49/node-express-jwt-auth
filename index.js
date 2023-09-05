@@ -2,11 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const app = express();
+const authRoutes = require("./routes/authRoutes");
 
 // static middleware
 app.use(express.static("public"));
-
-// Db password: eBEZ4o4Mo0WjHH67
 
 // view engine
 app.set("view engine", "ejs");
@@ -29,3 +28,4 @@ mongoose
 // routes
 app.get("/", (req, res) => res.render("home"));
 app.get("/smoothies", (req, res) => res.render("smoothies"));
+app.use(authRoutes);
