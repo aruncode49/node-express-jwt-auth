@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const app = express();
 const authRoutes = require("./routes/authRoutes");
 
-// static middleware
+// middleware
 app.use(express.static("public"));
+app.use(express.json());
 
 // view engine
 app.set("view engine", "ejs");
