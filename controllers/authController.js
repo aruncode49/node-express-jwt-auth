@@ -30,7 +30,6 @@ async function login_get(req, res) {
 
 async function signup_post(req, res) {
   const { email, password } = req.body;
-
   try {
     const user = await User.create({ email, password });
     res.status(201).json(user);
