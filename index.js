@@ -33,19 +33,3 @@ mongoose
 app.get("/", (req, res) => res.render("home"));
 app.get("/smoothies", (req, res) => res.render("smoothies"));
 app.use(authRoutes);
-
-// Set Cookies
-app.get("/set-cookie", (req, res) => {
-  res.cookie("newUser", true);
-  res.cookie("isEmployee", false, {
-    maxAge: 1000 * 60 * 60 * 24,
-  });
-  res.send("You got a new cookie");
-});
-
-// Get Cookies
-app.get("/get-cookie", (req, res) => {
-  const cookies = req.cookies;
-  console.log(cookies);
-  res.json(cookies);
-});

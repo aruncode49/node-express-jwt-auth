@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<form>
+<form action="/signup" method="POST">
   <h2>Sign Up</h2>
   <label for="email">Email</label>
   <input type="text" name="email" required placeholder="Enter your email" />
@@ -17,15 +17,5 @@
 
   <button type="submit">Sign Up</button>
 </form>
-
-<script>
-  const form = document.querySelector("form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(`The email is ${email} and password is ${password}`);
-  });
-</script>
 
 <%- include('partials/footer') %>
