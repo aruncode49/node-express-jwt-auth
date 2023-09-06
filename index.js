@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const authRoutes = require("./routes/authRoutes");
@@ -8,6 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 // view engine
 app.set("view engine", "ejs");
@@ -31,3 +33,19 @@ mongoose
 app.get("/", (req, res) => res.render("home"));
 app.get("/smoothies", (req, res) => res.render("smoothies"));
 app.use(authRoutes);
+
+// Set Cookies
+app.get("/set-cookie", (req, res) => {
+  res.cookie("newUser", true);
+  res.cookie("isEmployee", false, {
+    maxAge: 1000 * 60 * 60 * 24,
+  });
+  res.send("You got a new cookie");
+});
+
+// Get Cookies
+app.get("/get-cookie", (req, res) => {
+  const cookies = req.cookies;
+  console.log(cookies);
+  res.json(cookies);
+});
